@@ -10,7 +10,7 @@ Three deployment methods: Docker Compose (recommended and tested), bare-metal, a
 |-------------|---------|
 | **NVIDIA GPU** | 16GB+ VRAM (tested on RTX 5060 Ti 16GB) |
 | **NVIDIA drivers** | Proprietary drivers installed (`nvidia-smi` should show your GPU) |
-| **Python 3.9+** | With pip |
+| **Python 3.9–3.12** | With pip (`aider-chat` does not support Python 3.13+) |
 | **wget** | For downloading model weights |
 | **Model weights** | Qwen3.5-9B-Q6_K.gguf (~7GB) from HuggingFace |
 
@@ -47,6 +47,11 @@ wget https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/resolve/main/Qwen3.5-9B-Q6_K
 
 # 3. Install the ATLAS CLI + Aider
 pip install -e . aider-chat
+
+# If you are on Python 3.13+, use a conda environment with Python 3.12:
+conda create -n atlas312 python=3.12 -y
+conda activate atlas312
+pip install --no-cache-dir -e . aider-chat
 
 # 4. (Recommended) Install Go 1.24+ for full file access from any directory
 #    https://go.dev/dl/ — the proxy builds automatically on first run
